@@ -1,0 +1,12 @@
+{
+  "model": "gpt-4o-mini",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "mathsolver",
+      "server_url": "https://a295-2406-b400-b5-519f-8bd-4fe0-3d94-f319.ngrok-free.app/mcp",
+      "require_approval": "never"
+    }
+  ],
+  "input": "Please solve this arithmetic expression: 234 + 2343 *3434 - 34234*343 + 4343/4"
+}

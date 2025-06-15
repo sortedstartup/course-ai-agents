@@ -1,0 +1,23 @@
+{
+  "name": "file-classifier-agent",
+  "version": "1.0.0",
+  "description": "Smart file classifier agent using OpenAI function calling",
+  "main": "main.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node main.mjs"
+  },
+  "dependencies": {
+    "openai": "^4.104.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "openai",
+    "file-classifier",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT"
+}

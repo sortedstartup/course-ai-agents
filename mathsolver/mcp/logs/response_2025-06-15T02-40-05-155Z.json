@@ -1,0 +1,232 @@
+{
+  "id": "resp_684e326ac328819a9506b30c9629f896037fb78af7430098",
+  "object": "response",
+  "created_at": 1749955178,
+  "status": "completed",
+  "background": false,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": null,
+  "model": "gpt-4o-mini-2024-07-18",
+  "output": [
+    {
+      "id": "mcpl_684e326ade7c819a9ef9041f98afd812037fb78af7430098",
+      "type": "mcp_list_tools",
+      "server_label": "mathsolver",
+      "tools": [
+        {
+          "annotations": null,
+          "description": "",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "name": "add"
+        },
+        {
+          "annotations": null,
+          "description": "",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "name": "sub"
+        },
+        {
+          "annotations": null,
+          "description": "",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "name": "mul"
+        },
+        {
+          "annotations": null,
+          "description": "",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false,
+            "$schema": "http://json-schema.org/draft-07/schema#"
+          },
+          "name": "div"
+        }
+      ]
+    },
+    {
+      "id": "mcp_684e326df070819aba2cc5c99b52cc45037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":234,\"b\":0}",
+      "error": null,
+      "name": "add",
+      "output": "234",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e3270d104819a97b2707f4ad9957e037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":2343,\"b\":3434}",
+      "error": null,
+      "name": "mul",
+      "output": "8045862",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e32739688819a9069689b77d0f2a6037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":34234,\"b\":343}",
+      "error": null,
+      "name": "mul",
+      "output": "11742262",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e327893c4819a93a806d6f0b97028037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":4343,\"b\":4}",
+      "error": null,
+      "name": "div",
+      "output": "1085.75",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e327b8e64819aae15e61e776a896b037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":8045862,\"b\":11742262}",
+      "error": null,
+      "name": "sub",
+      "output": "-3696400",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e327e6d38819a8048281cafaffd3b037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":234,\"b\":-3696400}",
+      "error": null,
+      "name": "add",
+      "output": "-3696166",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "mcp_684e32817474819a8007cbbf00360e02037fb78af7430098",
+      "type": "mcp_call",
+      "approval_request_id": null,
+      "arguments": "{\"a\":-3696166,\"b\":1085.75}",
+      "error": null,
+      "name": "add",
+      "output": "-3695080.25",
+      "server_label": "mathsolver"
+    },
+    {
+      "id": "msg_684e32843a38819a8fcb86cbb935a9ad037fb78af7430098",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "text": "The result of the expression \\( 234 + 2343 \\times 3434 - 34234 \\times 343 + \\frac{4343}{4} \\) is approximately \\(-3695080.25\\)."
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "previous_response_id": null,
+  "reasoning": {
+    "effort": null,
+    "summary": null
+  },
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1,
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "type": "mcp",
+      "allowed_tools": null,
+      "headers": null,
+      "require_approval": "never",
+      "server_label": "mathsolver",
+      "server_url": "https://a295-2406-b400-b5-519f-8bd-4fe0-3d94-f319.ngrok-free.app/<redacted>"
+    }
+  ],
+  "top_p": 1,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1959,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 206,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 2165
+  },
+  "user": null,
+  "metadata": {}
+}
