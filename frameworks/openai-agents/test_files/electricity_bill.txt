@@ -1,0 +1,42 @@
+PACIFIC ELECTRIC COMPANY
+Customer Service: 1-800-555-POWER
+www.pacificelectric.com
+
+STATEMENT DATE: March 15, 2024
+ACCOUNT NUMBER: 1234567890
+SERVICE ADDRESS: 789 Residential Lane
+                 San Diego, CA 92101
+
+CUSTOMER: John and Mary Smith
+BILLING ADDRESS: Same as service address
+
+BILLING PERIOD: Feb 15, 2024 - Mar 15, 2024 (29 days)
+
+METER READINGS:
+Previous Reading: 8,547 kWh
+Current Reading:  9,234 kWh
+Usage This Period: 687 kWh
+
+ELECTRIC CHARGES:
+Basic Service Charge               $12.50
+Energy Charge (687 kWh @ $0.14)   $96.18
+Delivery Charge                    $23.45
+State Tax (8.25%)                  $10.90
+Environmental Fee                   $2.75
+
+TOTAL AMOUNT DUE: $145.78
+
+DUE DATE: April 10, 2024
+
+PAYMENT OPTIONS:
+- Online: www.pacificelectric.com/pay
+- Phone: 1-800-555-7297
+- Mail: PO Box 12345, San Diego, CA 92199
+- AutoPay: Save time with automatic payments
+
+ENERGY USAGE COMPARISON:
+This month: 687 kWh
+Last month: 742 kWh
+Same month last year: 658 kWh
+
+Thank you for choosing Pacific Electric Company! 

@@ -1,0 +1,20 @@
+[2024-03-20 09:15:23] INFO: Server startup initiated
+[2024-03-20 09:15:24] INFO: Loading configuration from /etc/app/config.json
+[2024-03-20 09:15:25] INFO: Database connection established (PostgreSQL 14.2)
+[2024-03-20 09:15:26] INFO: Server listening on port 8080
+
+[2024-03-20 10:32:17] WARN: High memory usage detected: 87% 
+[2024-03-20 10:32:18] INFO: Garbage collection triggered
+
+[2024-03-20 11:45:33] ERROR: Database connection timeout
+[2024-03-20 11:45:33] ERROR: Failed to execute query: SELECT * FROM users WHERE id = 12345
+[2024-03-20 11:45:34] INFO: Attempting database reconnection...
+[2024-03-20 11:45:35] INFO: Database connection restored
+
+[2024-03-20 14:22:09] ERROR: HTTP 500 - Internal Server Error
+[2024-03-20 14:22:09] ERROR: Stack trace: NullPointerException at line 247 in UserController.java
+[2024-03-20 14:22:10] WARN: Request timeout for user session: abc123def456
+
+[2024-03-20 16:08:44] INFO: Scheduled backup started
+[2024-03-20 16:12:33] INFO: Backup completed successfully (2.3GB)
+[2024-03-20 16:12:34] INFO: Old backup files cleaned up 

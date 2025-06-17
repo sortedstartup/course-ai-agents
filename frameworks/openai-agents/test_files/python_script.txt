@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""
+File organizer script - sorts files by extension into folders
+Author: Development Team
+Date: March 2024
+"""
+
+import os
+import shutil
+from pathlib import Path
+
+def create_folder_if_not_exists(folder_path):
+    """Create folder if it doesn't exist"""
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+        print(f"Created folder: {folder_path}")
+
+def organize_files(source_dir):
+    """
+    Organize files in source directory by extension
+    """
+    file_types = {
+        'images': ['.jpg', '.jpeg', '.png', '.gif', '.bmp'],
+        'documents': ['.pdf', '.doc', '.docx', '.txt', '.rtf'],
+        'videos': ['.mp4', '.avi', '.mkv', '.mov', '.wmv'],
+        'audio': ['.mp3', '.wav', '.flac', '.m4a']
+    }
+    
+    for filename in os.listdir(source_dir):
+        if os.path.isfile(os.path.join(source_dir, filename)):
+            file_ext = Path(filename).suffix.lower()
+            
+            moved = False
+            for folder, extensions in file_types.items():
+                if file_ext in extensions:
+                    dest_folder = os.path.join(source_dir, folder)
+                    create_folder_if_not_exists(dest_folder)
+                    
+                    source_path = os.path.join(source_dir, filename)
+                    dest_path = os.path.join(dest_folder, filename)
+                    
+                    shutil.move(source_path, dest_path)
+                    print(f"Moved {filename} to {folder}/")
+                    moved = True
+                    break
+            
+            if not moved:
+                print(f"Skipped: {filename} (unknown type)")
+
+if __name__ == "__main__":
+    source_directory = input("Enter source directory path: ")
+    if os.path.exists(source_directory):
+        organize_files(source_directory)
+        print("File organization completed!")
+    else:
+        print("Directory not found!") 
