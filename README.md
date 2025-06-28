@@ -94,7 +94,7 @@ GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token_here
 ## Step 2: Create the Agent Code
 
 ### 2.1 Create the Main Agent File
-Create `agent.py` in your agent folder and add code to call mcp servers and create agent
+Create `agent.py` in my-agent folder and add code to call mcp servers and create agent
 
 ## Step 3: Create a Custom MCP Server (Optional)
 

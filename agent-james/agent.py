@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-async def ai_infra_agent():
+async def ai_james_agent():
 
     company_info_mcp_server = MCPServerSse(params={
                              "url": "http://localhost:8001/sse",
@@ -73,4 +73,4 @@ async def ai_infra_agent():
 
 
 if __name__ == "__main__":
-    asyncio.run(ai_infra_agent())
+    asyncio.run(ai_james_agent())
