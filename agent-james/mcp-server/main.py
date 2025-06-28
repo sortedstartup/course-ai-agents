@@ -48,6 +48,20 @@ def get_projects():
         
     ]
 
+@mcp.tool()
+def get_meeting_notes():
+    return [
+        {
+            "title": "Meeting with Deepak",
+            "notes": """
+             Deepak: I think we should implement a new feature called tenant and user can create courses under tenant
+             Janaki: Right, we can do that
+             Deepak: We can add members to the tenant, add memebers to courses
+             Janaki: Yes, good idea Deepak, once we add a member to tenant and gave access to course, then memeber can see videos in that course
+             Janaki: Also we can delete video from course permissions to admin,in this case tenant creator
+            """
+        }
+    ]
 
 app = FastAPI()
 # app.mount("/mcp", mcp.streamable_http_app())
