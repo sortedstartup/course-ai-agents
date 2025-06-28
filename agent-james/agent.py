@@ -48,16 +48,12 @@ async def ai_james_agent():
                             1. find new issues to be created, for each issue find the project it belongs to
                             2. find new features to be implemented, for each feature find the project it belongs to
                             3. find new ideas to be implemented, for each idea find the project it belongs to
-
-                            - These are the three projects we are interested in. repository names shared below.
-                            - https://github.com/janakiramg/demo-stream
-                            - https://github.com/janakiramg/demo-sortedchat
-                            - https://github.com/janakiramg/demo-sortedinterview
                             
                             Once you have a list of ideas, features and issues, create them using the appropriate tools:
                             - Issues - create a issue in respective repository
-                            - Features and Ideas - add or update a github wiki page in respective project. 
+                            - Features and Ideas - create new GitHub wiki pages in the respective project repositories
                             - add reference links to issues, wiki pages if needed
+                            Create mermaid diagrams to explain the feature
                 """,
                 mcp_servers=[company_info_mcp_server, github_mcp_server],               
             )

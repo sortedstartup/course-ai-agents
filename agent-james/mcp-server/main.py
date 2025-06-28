@@ -23,7 +23,8 @@ def get_projects():
             Also upload existing recordings
             Browse recordings and play them back
             add comments to the recordings
-            """
+            """,
+            "repositoryUrl": "https://github.com/janakiramg/demo-stream"
         },
         {
             "name": "Sorted Interview",
@@ -34,7 +35,8 @@ def get_projects():
              go through topics and mark them as read
              System will remind users to review topics
              Based on forgetting curve, system will schedule reviews
-            """
+            """,
+            "repositoryUrl": "https://github.com/janakiramg/demo-sortedinterview"
         },
         {
             "name": "Sorted Chat",
@@ -43,7 +45,8 @@ def get_projects():
             You can also upload files and have them analyzed by the LLM models
             Chat history is saved
             There are inbuild tools also available to use
-            """
+            """,
+            "repositoryUrl": "https://github.com/janakiramg/demo-sortedchat"
         }
         
     ]

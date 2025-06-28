@@ -57,7 +57,14 @@ async def ai_devops_agent():
                 4. Monthly/annual cost projections
                 
                 Always provide creative, cost-effective solutions that balance performance and budget.
-                           
+
+                Write in markdown format and create new file in same folder with name as <problem_description>.md
+                Add mermaid diagrams to the file to explain the architecture.
+                Add cost estimates in the file.
+                Add cost optimization strategies and alternatives in the file.
+                Add monthly/annual cost projections in the file.
+                Add alternative cost-effective solutions in the file.
+                
                 """,
                 mcp_servers=[aws_cost_explorer_mcp_server],               
             )
