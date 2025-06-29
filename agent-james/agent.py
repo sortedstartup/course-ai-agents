@@ -41,7 +41,7 @@ async def ai_james_agent():
            
             agent = Agent(
                 name="Agent James",
-                model="gpt-4.1",
+                model="gpt-4o",
                 instructions=f"""{RECOMMENDED_PROMPT_PREFIX}
                             You are a personal assistant agent with access to company information and GitHub.
                             Your job is to look at a meeting notes and do this - 

@@ -63,6 +63,38 @@ def get_meeting_notes():
              Janaki: Yes, good idea Deepak, once we add a member to tenant and gave access to course, then memeber can see videos in that course
              Janaki: Also we can delete video from course permissions to admin,in this case tenant creator
             """
+        },
+        {
+            "title": "chat with sorted team",
+            "notes": """
+              employee1: Today we found a bug. users are not getting email reminders
+              employee2: Can you please create a bug
+              employee1: I am busy with other tasks. Can you create a bug?
+            """
+        },
+        {
+            "title": "call with deepak",
+            "notes":"""
+            Deepak: how are you janaki?
+            Janaki: I am good, how are you?
+            Deepak: I am good, I am going to a meeting with the team.
+            Janaki: ok, have a good meeting.
+            Deepak: thank you.
+            Janaki: you are welcome.
+            Deepak: I will see you later.
+            Janaki: I want to discuss about an idea. This very good idea. We have to document it. 
+            Janaki: Take care.
+            """
+        },
+        {
+            "title": "general discussion",
+            "notes": """
+            person1: chatGPT has a new feature which is a tool called canvas. this tool really good.
+            person2: wow, this is really good feature, we should implement it.
+            person1: yes, we should implement it.
+            person2: I think we should implement it.
+            person1: Sure. Better we document about this feature first
+            """
         }
     ]
 
