@@ -18,6 +18,7 @@ from agents.extensions import handoff_filters
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
+from agents.mcp import MCPServerSse
 
 # Load environment variables from .env file
 load_dotenv()
@@ -28,14 +29,21 @@ async def ai_devops_agent():
     aws_cost_explorer_mcp_server = MCPServerStdio(params={
         "command": "uvx",
         "args": ["awslabs.cost-analysis-mcp-server@latest"],
-        "env": {
-            "AWS_PROFILE": os.getenv("AWS_PROFILE", "default"),
-            "AWS_REGION": os.getenv("AWS_REGION", "us-east-1"),
-            "FASTMCP_LOG_LEVEL": "ERROR"
-        }
+    #     "env": {
+    #     "FASTMCP_LOG_LEVEL": "ERROR",
+    #     "AWS_PROFILE": "your-aws-profile"
+    #   },
+    #   "disabled": false,
+    #   "autoApprove": []
     })
 
-    async with aws_cost_explorer_mcp_server:
+  
+    # Calculator MCP server
+    calculator_mcp_server = MCPServerSse(params={
+                             "url": "http://127.0.0.1:8001/sse",
+                            }, cache_tools_list=True)
+
+    async with aws_cost_explorer_mcp_server, calculator_mcp_server:
            
             agent = Agent(
                 name="Agent Devops",
@@ -51,22 +59,22 @@ async def ai_devops_agent():
                 - Infrastructure cost planning and budgeting insights
 
                 Based on given problems, suggest standard development designs and provide:
-                1. AWS infrastructure architecture recommendations
-                2. Detailed cost estimates for the proposed infrastructure
-                3. Cost optimization strategies and alternatives
-                4. Monthly/annual cost projections
+                1. Detailed cost estimates for the proposed infrastructure
+                2. Cost optimization strategies and alternatives
+                3. Monthly/annual cost projections
                 
                 Always provide creative, cost-effective solutions that balance performance and budget.
 
-                Write in markdown format and create new file in same folder with name as <problem_description>.md
+                Write in markdown format
                 Add mermaid diagrams to the file to explain the architecture.
                 Add cost estimates in the file.
                 Add cost optimization strategies and alternatives in the file.
                 Add monthly/annual cost projections in the file.
                 Add alternative cost-effective solutions in the file.
                 
+                You have calculator tool available to calculate the cost of the infrastructure.
                 """,
-                mcp_servers=[aws_cost_explorer_mcp_server],               
+                mcp_servers=[aws_cost_explorer_mcp_server, calculator_mcp_server],               
             )
            
 
@@ -76,14 +84,15 @@ async def ai_devops_agent():
              - 4 replicas for high availability
              - Redis for caching
              - PostgreSQL database
-             - Support for 1 million concurrent users
+             - Support for 10000 concurrent users
              - Deployment on AWS
              
              Please provide:
-             1. A complete AWS architecture design
-             2. Detailed monthly cost estimates
-             3. Cost optimization recommendations
-             4. Alternative cost-effective solutions
+             1. Detailed monthly cost estimates
+             2. Cost optimization recommendations
+             3. Alternative cost-effective solutions
+
+             Save results in a file named <problem_description>.md
   
             """, max_turns=20)
           
