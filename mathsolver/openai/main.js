@@ -2,20 +2,21 @@
 // Usage: node main.js "3 * (4 + 5) / 2"
 // Requires OPENAI_API_KEY environment variable
 
+const fs = require("fs");
 const API_URL = "https://api.openai.com/v1/chat/completions";
-const MODEL = "gpt-4o-mini"; // any recent model that supports function calling
+const MODEL = "gpt-5-nano"; // any recent model that supports function calling
 // const API_URL = "http://localhost:11434/v1/chat/completions";
 // const MODEL = "qwen3:1.7b"; // any recent model that supports function calling
 
 // Tool implementations
 const tools = {
   add: ({ a, b }) => (a + b).toString(),
-  sub: ({ a, b }) => (a - b).toString(), 
+  sub: ({ a, b }) => (a - b).toString(),
   mul: ({ a, b }) => (a * b).toString(),
   div: ({ a, b }) => {
     if (b === 0) throw new Error("Division by zero");
     return (a / b).toString();
-  }
+  },
 };
 
 // -------------------------------
@@ -108,11 +109,28 @@ async function openaiChat(body) {
   }
 
   //print both body and response.json()
-  const response_json = await response.json()
+  const response_json = await response.json();
 
-// un comment for debugging
+  // un comment for debugging
   // console.log("body", JSON.stringify(body, null, 2));
   // console.log("response.json()", JSON.stringify(response_json, null, 2));
+
+  // Log request and response to request_log.js
+  const logEntry = {
+    request: JSON.stringify(body),
+    response: JSON.stringify(response_json),
+  };
+  fs.appendFileSync(
+    "./request_log.js",
+    `all_requests.push(${JSON.stringify(logEntry)})
+`,
+  );
+
+  fs.appendFileSync("./request_raw.txt", JSON.stringify(body) + "\n\n");
+  fs.appendFileSync(
+    "./response_raw.txt",
+    JSON.stringify(response_json) + "\n\n",
+  );
 
   return response_json;
 }
@@ -121,21 +139,33 @@ async function openaiChat(body) {
 // Agent loop
 // -------------------------------
 async function solve(expression) {
-  
+  // Write header to log file
+  fs.writeFileSync("./request_log.js", "all_requests = []\n\n");
+
   const messages = [
-    { role: "system", content: "" },
-    { role: "user", content: expression }
+    {
+      role: "system",
+      content: `Solve the artihmetic expression using only the tools provided,
+      dont ever in any case solve it yourself.
+      if you run into any unexpected problem stop there, dont keep trying.
+      explain how you arrived at the answer
+      If you notice anything wrong or strange point it out.
+
+      `,
+    },
+    { role: "user", content: expression },
   ];
 
   let iteration = 0;
-  while (iteration < 10) {
+  while (iteration < 20) {
+    // agent loop
     iteration++;
 
     const data = await openaiChat({
       model: MODEL,
       messages,
-      tools: toolSchema,
-      tool_choice: "auto"
+      tools: toolSchema, /// mcpcleint = new mcapcleint('http://localhost:3000/mcp'); mcpcleint.listTools()
+      tool_choice: "auto",
     });
 
     const message = data.choices[0].message;
@@ -144,6 +174,13 @@ async function solve(expression) {
     if (finishReason === "stop") {
       // Final explanation / answer.
       logAssistant(message.content);
+
+      // Write footer to log file
+      fs.appendFileSync(
+        "./request_log.js",
+        "\nmodule.exports = all_requests;\n",
+      );
+
       return message.content;
     }
 
@@ -154,19 +191,20 @@ async function solve(expression) {
       for (const call of message.tool_calls) {
         const { name, arguments: argStr } = call.function;
         const args = JSON.parse(argStr || "{}");
-        
+
         if (!tools[name]) {
           throw new Error(`Unknown tool: ${name}`);
         }
-        
+
         const result = tools[name](args);
+
         console.log(`Tool → ${name}(${JSON.stringify(args)}) = ${result}`);
 
         // Push tool result message corresponding to this call
         messages.push({
           role: "tool",
           tool_call_id: call.id,
-          content: result
+          content: result,
         });
       }
       continue;
@@ -174,7 +212,10 @@ async function solve(expression) {
 
     throw new Error("Unexpected response format from OpenAI.");
   }
-  
+
+  // Write footer to log file
+  fs.appendFileSync("./request_log.js", "\nmodule.exports = all_requests;\n");
+
   throw new Error("Iterations limit reached without solution.");
 }
 
@@ -189,13 +230,13 @@ function logAssistant(text) {
 if (require.main === module) {
   const expression = process.argv.slice(2).join(" ");
   if (!expression) {
-    console.error("Usage: node main.js \"<arithmetic expression>\"");
+    console.error('Usage: node main.js "<arithmetic expression>"');
     process.exit(1);
   }
-  
+
   solve(expression)
-    .then(answer => console.log(`Answer: ${answer}`))
-    .catch(err => {
+    .then((answer) => console.log(`Answer: ${answer}`))
+    .catch((err) => {
       console.error(err);
       process.exit(1);
     });
